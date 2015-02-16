@@ -1,5 +1,5 @@
 package SammaGamlaProject;
 
-public class Center {
+public class Center extends Room{
 
 }

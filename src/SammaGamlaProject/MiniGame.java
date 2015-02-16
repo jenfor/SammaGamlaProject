@@ -1,5 +1,5 @@
 package SammaGamlaProject;
 
-public class MiniGame {
+public class MiniGame extends Room{
 
 }

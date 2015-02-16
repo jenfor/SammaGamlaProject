@@ -1,5 +1,5 @@
 package SammaGamlaProject;
 
-public class Garden {
+public class Garden extends Room{
 
 }

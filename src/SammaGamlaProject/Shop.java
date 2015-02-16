@@ -1,5 +1,5 @@
 package SammaGamlaProject;
 
-public class Shop {
+public class Shop extends Room{
 
 }
