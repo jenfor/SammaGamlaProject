@@ -29,7 +29,7 @@ public class GameEngine {
 		return myFrame;
 	}
 	
-	public String getCurrentRoom() {
+	public String getCurrent() {
 		return current;
 	}
 	
