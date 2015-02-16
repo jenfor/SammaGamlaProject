@@ -41,7 +41,7 @@ public class GameEngine {
 	}
 	
 	private void gameStart() {
-		background = new JPanelWithBackground("H:/eclipse/workspace/SammaGamlaProject/pictures/startbackground.jpg");
+		background = new JPanelWithBackground("C:/Users/Jenny/Documents/GitHub/SammaGamlaProject/SammaGamlaProject/pictures/startbackground.jpg");
 		background.setLayout(null);
 		Font font = new Font("Viner Hand ITC", Font.BOLD, 50);
 		
