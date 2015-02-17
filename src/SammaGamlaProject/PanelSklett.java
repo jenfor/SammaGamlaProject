@@ -79,7 +79,7 @@ public class PanelSklett {
 	private JPanel createShopPanel()
 	{
 		
-		HashMap<int, String> shopItems =shop.getShopItems();
+		HashMap<Integer, String> shopItems; // =shop.getShopItems();
 		
 		panelClickable.setOpaque(false);
 	    panelClickable.setLayout(null);

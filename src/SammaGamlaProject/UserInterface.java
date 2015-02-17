@@ -17,10 +17,6 @@ import java.util.HashMap;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import Projektet.GameEngine;
-import Projektet.JPanelWithBackground;
-import Projektet.PanelSklett;
-import Projektet.Room;
 
 /**
  * Hej! Jag har flyttat ut createMenu som en egen metod. Tycker att det blir finare och kortare pÃ¥ createGUI dÃ¥ ^ ^
@@ -43,7 +39,7 @@ public class UserInterface {
     {
         engine = gameEngine;
         createGUI();
-        room = new Room(engine.getCurrent());
+        room = new Room();
         invisPanels = new PanelSklett(engine);
     }
 	
@@ -183,6 +179,8 @@ public class UserInterface {
         myFrame.pack();
 	}
 	
+	private UserInterface that = this; // ;-)
+	
 	 public void createGUI()
 	    {
 	        myFrame = new JFrame("Spel");
@@ -195,15 +193,15 @@ public class UserInterface {
 	        JButton button6 = new JButton("Föremål");
 	        JButton button7 = new JButton("Pengar");
 	        //image = room.getPicture(current);
-	        File sourceimage = new File("pictures/stig.jpg");//Bilder ska egentligen ligga sparade i rummen 
-	        Image image= null;								// Just nu står det här
-			try {
-				image = ImageIO.read(sourceimage);
-			} catch (IOException e) {
+	        //File sourceimage = new File("pictures/stig.jpg");//Bilder ska egentligen ligga sparade i rummen 
+	        //Image image= null;								// Just nu står det här
+			//try {
+				//image = ImageIO.read(sourceimage);
+			//} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	        
+				//e.printStackTrace();
+			//}
+	        String image ="pictures/startbackground.jpg";
 	                
 	        
 	        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -251,12 +249,21 @@ public class UserInterface {
 	        myFrame.getContentPane().add(panel, BorderLayout.NORTH);
 	        
 	        button2.addActionListener(new ActionListener() {
-	            @Override
+				
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					// TODO Auto-generated method stub
+					that.changeRoom("Shop");
+					
+				}
+			});
+	            /*@Override
 	            public void actionPerformed(ActionEvent event) {
 	                System.exit(0);
 	            }
 	        });
-	        
+	        */
+	        	
 	        exitButton.addActionListener(new ActionListener() {
 	            @Override
 	            public void actionPerformed(ActionEvent event) {
@@ -277,26 +284,38 @@ public class UserInterface {
 	        myFrame.setVisible(true);
 	        entryField.requestFocus();
 	        
-	        changeRoom("Center");
+	       
 	        
 	    }
 	 
-	 private void setJPanelWithBackground(image)
+	 private void setJPanelWithBackground(String i)
 	 {
-		  image = i;
-		 
+		  panel = new JPanelWithBackground(i);
+		  
+		    
 	 }
 	 
 	 private void changeRoom(String current)
 	 {
+		 
+		
+		 myFrame.remove(panel);
+		 
 		 if(current.equals("Center")) room = invisPanels.center; 
-			if(current.equals("Shop")) room = invisPanels.shop;
-			if(current.equals("Garden")) room = invisPanels.garden;
-			else room = invisPanels.miniGame1;
-			
-		setJPanelWithBackground(room.getPicture());
-		 panel.add(room.getRoomPanel(), BorderLayout.NORTH);
+		 else if(current.equals("Shop")) room = invisPanels.shop;
+		 else if(current.equals("Garden")) room = invisPanels.garden;
+		 else room = invisPanels.miniGame1;
+		 
+		 setJPanelWithBackground(room.getPicture());
+		 
+		 //panel.add(room.getRoomPanel(), BorderLayout.CENTER);
+		 
+		 myFrame.add(panel);			
+		 myFrame.pack();
+	     myFrame.setVisible(true);
+	     
 		 
 	 }
+	 
 
 }
