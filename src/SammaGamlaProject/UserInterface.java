@@ -215,9 +215,14 @@ public class UserInterface {
 	 
 	 private void addBorderLayout(JPanel pa, String current)
 	 {
+		 	int i = 0;
+		 	String nextRoom = "Centrum";
+		 	if("center".equals(current)){ nextRoom = "Affär";}
+		 	final int j = i;
+		 	final String c = current;
 		 			 	
 		 	exitButton = new JButton("Exit");
-	        JButton button2 = new JButton("Centrum");
+	        JButton button2 = new JButton(nextRoom);
 	        JButton mapButton = new JButton("Karta");
 	        JButton button4 = new JButton("Föremål");
 	        JButton button5 = new JButton("Pengar");
@@ -264,7 +269,11 @@ public class UserInterface {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					// TODO Auto-generated method stub
-					that.changeRoom("center");
+					if("center".equals(c)){
+					that.changeRoom("shop");
+					}
+					else that.changeRoom("center");
+					
 					
 				}
 			});
