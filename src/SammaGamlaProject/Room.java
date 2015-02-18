@@ -40,7 +40,7 @@ public class Room {
 	public JPanel getRoomPanel(String current)
 	{
 		if (jp != null)
-		return jp.getPanel(e.getCurrent());
+		return jp.getPanel("Shop"/*e.getCurrent()*/);
 		
 		else 
 			return new JPanel();

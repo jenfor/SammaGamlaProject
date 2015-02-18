@@ -282,8 +282,9 @@ public class UserInterface {
 	 {
 		  myFrame.remove(panel);
 		  panel = new JPanelWithBackground(i);
-		  
-		  panel.add(room.getRoomPanel("Shop"/*engine.getCurrent()*/));
+		  panel.setLayout(new BorderLayout());
+		  JPanel j = new JPanel();
+		  panel.add(invisPanels.getPanel(engine.getCurrent()), BorderLayout.CENTER); //room.getRoomPanel("Shop"/*engine.getCurrent()*/));
 		  myFrame.add(panel);			
 		  myFrame.pack();
 		  myFrame.setVisible(true);
