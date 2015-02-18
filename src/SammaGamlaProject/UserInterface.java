@@ -38,13 +38,13 @@ public class UserInterface {
     public UserInterface(GameEngine gameEngine)
     {
         engine = gameEngine;
-        createGUI();
-        room = new Room();
-        invisPanels = new PanelSklett(engine);
+        //createGUI();
+        //room = new Room();
+        invisPanels = new PanelSklett(engine, this);
     }
 	
 	
-	public void createMenu() {
+	/*public void createMenu() {
     	//Where the GUI is created:
         JMenuBar menuBar;
         JMenu menu, submenu;
@@ -178,6 +178,7 @@ public class UserInterface {
 		
         myFrame.pack();
 	}
+	*/
 	
 	private UserInterface that = this; // ;-)
 	
@@ -186,21 +187,13 @@ public class UserInterface {
 	        myFrame = new JFrame("Spel");
 	        entryField = new JTextField(34);
 	        exitButton = new JButton("Exit");
-	        JButton button2 = new JButton("Affär");
+	        JButton button2 = new JButton("Centrum");
 	        JButton mapButton = new JButton("Karta");
 	        JButton button4 = new JButton("Föremål");
 	        JButton button5 = new JButton("Pengar");
 	        JButton button6 = new JButton("Föremål");
 	        JButton button7 = new JButton("Pengar");
-	        //image = room.getPicture(current);
-	        //File sourceimage = new File("pictures/stig.jpg");//Bilder ska egentligen ligga sparade i rummen 
-	        //Image image= null;								// Just nu står det här
-			//try {
-				//image = ImageIO.read(sourceimage);
-			//} catch (IOException e) {
-				// TODO Auto-generated catch block
-				//e.printStackTrace();
-			//}
+	        
 	        String image ="pictures/startbackground.jpg";
 	                
 	        
@@ -219,12 +212,9 @@ public class UserInterface {
 	        myFrame.setResizable(false);
 	        myFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 	        
-	        
-	       
+	              
 	        panel = new JPanelWithBackground(image); 
-			
-			
-	        
+				
 	        JPanel p = new JPanel(new GridLayout(4,1));
 	        JPanel p2 = new JPanel(new GridLayout(4,1));
 	        JPanel b = new JPanel();
@@ -253,7 +243,7 @@ public class UserInterface {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					// TODO Auto-generated method stub
-					that.changeRoom("Shop");
+					that.changeRoom("Center");
 					
 				}
 			});
@@ -290,17 +280,20 @@ public class UserInterface {
 	 
 	 private void setJPanelWithBackground(String i)
 	 {
+		  myFrame.remove(panel);
 		  panel = new JPanelWithBackground(i);
+		  
+		  panel.add(room.getRoomPanel("Shop"/*engine.getCurrent()*/));
+		  myFrame.add(panel);			
+		  myFrame.pack();
+		  myFrame.setVisible(true);
 		  
 		    
 	 }
 	 
-	 private void changeRoom(String current)
+	 public void changeRoom(String current)
 	 {
-		 
-		
-		 myFrame.remove(panel);
-		 
+		 engine.setCurrent(current);
 		 if(current.equals("Center")) room = invisPanels.center; 
 		 else if(current.equals("Shop")) room = invisPanels.shop;
 		 else if(current.equals("Garden")) room = invisPanels.garden;
@@ -308,11 +301,9 @@ public class UserInterface {
 		 
 		 setJPanelWithBackground(room.getPicture());
 		 
-		 //panel.add(room.getRoomPanel(), BorderLayout.CENTER);
+		 //panel.add(room.getRoomPanel(engine.getCurrent()), BorderLayout.CENTER);
 		 
-		 myFrame.add(panel);			
-		 myFrame.pack();
-	     myFrame.setVisible(true);
+		
 	     
 		 
 	 }

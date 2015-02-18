@@ -33,6 +33,13 @@ public class GameEngine {
 		return current;
 	}
 	
+	
+	// Jag la till denna /Jenny
+	public void setCurrent(String c)
+	{
+		current = c;
+	}
+	
 	public void printWelcome() {
 		String name;
 		JOptionPane.showMessageDialog(myFrame, "Välkommen till vårt spel!!", "", JOptionPane.INFORMATION_MESSAGE);
@@ -55,7 +62,7 @@ public class GameEngine {
         myFrame.setResizable(false);
         myFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
-        gui.createMenu();
+        //gui.createMenu();
 		
 		JButton startButton = new JButton ("Starta spel");
         startButton.setBounds(420,580,400,80);
