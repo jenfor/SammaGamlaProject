@@ -26,8 +26,8 @@ public class UserInterface {
 	    private JFrame myFrame;
 	    private JTextField entryField;
 	    private JTextArea log;
-	    private JLabel image;
-	   	    private JButton exitButton;
+	    private String image;
+	   	private JButton exitButton;
 	    private HashMap<String,JButton> exitButtons = new HashMap<String,JButton>();
 	    private JPanelWithBackground panel;
 	    private Room room;
@@ -44,7 +44,7 @@ public class UserInterface {
     }
 	
 	
-	/*public void createMenu() {
+	public void createMenu() {
     	//Where the GUI is created:
         JMenuBar menuBar;
         JMenu menu, submenu;
@@ -178,7 +178,7 @@ public class UserInterface {
 		
         myFrame.pack();
 	}
-	*/
+	
 	
 	private UserInterface that = this; // ;-)
 	
@@ -186,13 +186,43 @@ public class UserInterface {
 	    {
 	        myFrame = new JFrame("Spel");
 	        entryField = new JTextField(34);
-	        exitButton = new JButton("Exit");
+	        image ="pictures/startbackground.jpg";
+	        
+	        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	        double width = screenSize.getWidth();
+	        double height = screenSize.getHeight();
+	        
+	        double textHeight = height * 0.15;
+	        double textWidth = height * 0.15;
+	        double imgWidth = width * 0.9;
+	        double imgHeight = height * 0.9;
+	        
+	        myFrame.setPreferredSize(new Dimension((int)width, (int)height));
+	        myFrame.setMinimumSize(new Dimension((int)width, (int)height));
+	        myFrame.setResizable(false);
+	        myFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+	        	              
+	        panel = new JPanelWithBackground(image); 
+	        addBorderLayout(panel, engine.getCurrent());
+	        createMenu();
+	       	               	        
+	        myFrame.pack();
+	        myFrame.setVisible(true);
+	        entryField.requestFocus();
+	              
+	        
+	    }
+	 
+	 private void addBorderLayout(JPanel pa, String current)
+	 {
+		 			 	
+		 	exitButton = new JButton("Exit");
 	        JButton button2 = new JButton("Centrum");
 	        JButton mapButton = new JButton("Karta");
 	        JButton button4 = new JButton("Föremål");
 	        JButton button5 = new JButton("Pengar");
 	        JButton button6 = new JButton("Föremål");
-	        JButton button7 = new JButton("Pengar");
+	        JButton button7 = new JButton("Pengar"); 
 	        
 	        String image ="pictures/startbackground.jpg";
 	                
@@ -206,15 +236,6 @@ public class UserInterface {
 	        double imgWidth = width * 0.9;
 	        double imgHeight = height * 0.9;
 	        
-	        
-	        myFrame.setPreferredSize(new Dimension((int)width, (int)height));
-	        myFrame.setMinimumSize(new Dimension((int)width, (int)height));
-	        myFrame.setResizable(false);
-	        myFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-	        
-	              
-	        panel = new JPanelWithBackground(image); 
-				
 	        JPanel p = new JPanel(new GridLayout(4,1));
 	        JPanel p2 = new JPanel(new GridLayout(4,1));
 	        JPanel b = new JPanel();
@@ -238,21 +259,17 @@ public class UserInterface {
 	        
 	        myFrame.getContentPane().add(panel, BorderLayout.NORTH);
 	        
-	        button2.addActionListener(new ActionListener() {
+	       button2.addActionListener(new ActionListener() {
 				
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					// TODO Auto-generated method stub
-					that.changeRoom("Center");
+					that.changeRoom("center");
 					
 				}
 			});
-	            /*@Override
-	            public void actionPerformed(ActionEvent event) {
-	                System.exit(0);
-	            }
-	        });
-	        */
+	       
+	            
 	        	
 	        exitButton.addActionListener(new ActionListener() {
 	            @Override
@@ -267,23 +284,14 @@ public class UserInterface {
 	            	System.exit(0);
 	            }
 	        });
-	        
-	         
-	               	        
-	        myFrame.pack();
-	        myFrame.setVisible(true);
-	        entryField.requestFocus();
-	        
-	       
-	        
-	    }
+	 }
 	 
 	 private void setJPanelWithBackground(String i)
 	 {
 		  myFrame.remove(panel);
 		  panel = new JPanelWithBackground(i);
 		  panel.setLayout(new BorderLayout());
-		  JPanel j = new JPanel();
+		  addBorderLayout(panel, engine.getCurrent());
 		  panel.add(invisPanels.getPanel(engine.getCurrent()), BorderLayout.CENTER); //room.getRoomPanel("Shop"/*engine.getCurrent()*/));
 		  myFrame.add(panel);			
 		  myFrame.pack();
@@ -300,12 +308,7 @@ public class UserInterface {
 		 else if(current.equals("Garden")) room = invisPanels.garden;
 		 else room = invisPanels.miniGame1;
 		 
-		 setJPanelWithBackground(room.getPicture());
-		 
-		 //panel.add(room.getRoomPanel(engine.getCurrent()), BorderLayout.CENTER);
-		 
-		
-	     
+		 setJPanelWithBackground(room.getPicture(engine.getCurrent()));
 		 
 	 }
 	 

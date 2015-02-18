@@ -45,9 +45,9 @@ public class PanelSklett {
 	public JPanel getPanel(String current)
 	{
 		
-		if(current.equals("Center")) panelClickable = createCenterPanel();
-		else if(current.equals("Shop")) panelClickable = createShopPanel();
-		else if(current.equals("Garden")) panelClickable = createGardenPanel();
+		if(current.equals("center")) panelClickable = createCenterPanel();
+		else if(current.equals("shop")) panelClickable = createShopPanel();
+		else if(current.equals("garden")) panelClickable = createGardenPanel();
 		else panelClickable = createMiniGamePanel();
 		
 		return panelClickable;
@@ -60,13 +60,13 @@ public class PanelSklett {
 	    panel.setOpaque(false);
 	    //panel.setLayout(new GridLayout(4,4));
 	    panel.setLayout(null);
-	    JButton clickButton = new JButton ("Skylt");
+	    JButton clickButton = new JButton ("Affär");
 	    clickButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				ui.changeRoom("Shop");
+				ui.changeRoom("shop");
 				
 			}
 		});
@@ -104,7 +104,7 @@ public class PanelSklett {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				ui.changeRoom("Center");
+				ui.changeRoom("center");
 				
 			}
 		});

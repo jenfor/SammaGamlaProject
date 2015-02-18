@@ -16,35 +16,43 @@ public class Room {
 	{
 		this.jp = jp;
 		this.e = e;
-		i = 0;
+		
 	}
 	
-	public String getPicture()
+	public String getPicture(String current)
 	{
-		if(i==0)
+		if(current.equals("center"))
 		{
-			i = 1;
+			
 			return "pictures/stig.jpg";
+			
+		}
+		
+		if(current.equals("shop"))
+		{
+			
+			return "pictures/slott.jpg";
 			
 		}
 		
 		else 
 		{
-			i = 0;
-			return "pictures/slott.jpg";
+			
+			return "pictures/sno.jpg";
 		}
 		
 	}
 
-	
-	public JPanel getRoomPanel(String current)
-	{
+	//Onödig!!
+	/*public JPanel getRoomPanel(String current)
+	//{
 		if (jp != null)
-		return jp.getPanel("Shop"/*e.getCurrent()*/);
-		
+		return jp.getPanel("Shop"/*e.getCurrent()*//*);
+		/*
 		else 
 			return new JPanel();
 	}
+      */
 
 }
 
