@@ -1,42 +1,36 @@
 package SammaGamlaProject;
-import java.awt.*;
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
- * Den h√§r klassen skapar rum, frame och starta spelet.
- * Return: myFrame och currentRoom med hj√§lp av tv√• public metoder.
+ * Den h‰r klassen skapar rum.
+ * Return: myFrame och currentRoom med hj‰lp av tvÂ public metoder.
  */
 public class GameEngine {
-	public Money money;
-	private String current;
 	private Player user;
 	private UserInterface gui;
+	private String current;
 	
 	public GameEngine() {
-		//Namnet p√• v√•rt spel heter f√∂r tillf√§llet spel ^ ^
-		money = new Money();
 		user = new Player();
 		gui = new UserInterface(this);
+		createRooms();
+		gui.gameStart();
 	}
 	
 	public String getCurrent() {
 		return current;
 	}
 	
-	
-	// Jag la till denna /Jenny
-	public void setCurrent(String c)
-	{
-		current = c;
+	//Jag la till denna /Jenny
+	public void setCurrent(String room) {
+		current = room;
 	}
 	
 	public void printWelcome() {
 		String name;
-		JOptionPane.showMessageDialog(gui.myFrame(), "V√§lkommen till v√•rt spel!!", "", JOptionPane.INFORMATION_MESSAGE);
-		name = JOptionPane.showInputDialog(gui.myFrame(), "Vad √§r ditt namn?", "", JOptionPane.QUESTION_MESSAGE);
-		//player.setName(name);
+		JOptionPane.showMessageDialog(gui.myFrame(), "V‰lkommen till vÂrt spel!!", "", JOptionPane.INFORMATION_MESSAGE);
+		name = JOptionPane.showInputDialog(gui.myFrame(), "Vad ‰r ditt namn?", "", JOptionPane.QUESTION_MESSAGE);
+		user.setUserName(name);
 	}
 	
 	private void createRooms() {
@@ -49,8 +43,5 @@ public class GameEngine {
 
         //startar spelet i centrum
         current = "center";
-        
-        
-       //kommentar
     }
 }

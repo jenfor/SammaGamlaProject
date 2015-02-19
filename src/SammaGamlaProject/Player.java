@@ -3,10 +3,10 @@ package SammaGamlaProject;
 public class Player {
 	private String userName;
 	private int level;
+	private Inventory myInventory;
 	
 	public Player(){
-		
-		
+		myInventory = new Inventory();
 	}
 	
 	public String getUserName(){

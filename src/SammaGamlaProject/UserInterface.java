@@ -21,40 +21,38 @@ import javax.swing.*;
 
 
 /**
- * Hej! Jag har flyttat ut createMenu som en egen metod. Tycker att det blir finare och kortare p√• createGUI d√• ^ ^
+ * 
  */
 public class UserInterface {
-	  private GameEngine engine;
-	    private JFrame myFrame;
-	    private JTextField entryField;
-	    private JTextArea log;
-	    private String image;
-	   	private JButton exitButton;
-	    private HashMap<String,JButton> exitButtons = new HashMap<String,JButton>();
-	    private JPanelWithBackground panel;
-	    private Room room;
-	    public PanelSklett invisPanels;
-	    private JPanel invisPanel;
-	    private JPanelWithBackground background;
-		private UserInterface that = this; // ;-)
+	private GameEngine engine;
+	private JFrame myFrame;
+	private JTextField entryField;
+	private JTextArea log;
+	private String image;
+	private JButton exitButton;
+	private HashMap<String,JButton> exitButtons = new HashMap<String,JButton>();
+	private JPanelWithBackground panel;
+	private Room room;
+	public PanelSklett invisPanels;
+	private JPanel invisPanel;
+	private JPanelWithBackground background;
+	private UserInterface that = this; // ;-)
 	
-	//Den metoden som skapas i game
     public UserInterface(GameEngine gameEngine)
     {
         engine = gameEngine;
-        myFrame = new JFrame("spel");
         //createGUI();
         //room = new Room();
         invisPanels = new PanelSklett(engine, this);
-        gameStart();
     }
     
     public JFrame myFrame() {
     	return myFrame;
     }
     
-    private void gameStart() {
-		background = new JPanelWithBackground("C:/Users/Jenny/Documents/GitHub/SammaGamlaProject/SammaGamlaProject/pictures/startbackground.jpg");
+    public void gameStart() {
+    	myFrame = new JFrame("spel");
+		background = new JPanelWithBackground("pictures/startbackground.jpg");
 		background.setLayout(null);
 		Font font = new Font("Viner Hand ITC", Font.BOLD, 50);
 		
@@ -62,7 +60,7 @@ public class UserInterface {
         //double width = screenSize.getWidth();
         //double height = screenSize.getHeight();
         
-		//Frame har en best√§md storlek 1280x800. Kan finnas kvar tills man implementerar resize-funktion f√∂r JButton
+		//Frame har en best‰md storlek 1280x800. Kan finnas kvar tills man implementerar resize-funktion fˆr JButton
         myFrame.setPreferredSize(new Dimension(1280, 800));
         myFrame.setMinimumSize(new Dimension(1280, 800));
         myFrame.setResizable(false);
@@ -75,18 +73,17 @@ public class UserInterface {
         startButton.setContentAreaFilled(false);
         startButton.setBorderPainted(false); //med eller utan kant
         startButton.setFont(font);
-        startButton.setForeground(Color.pink); //f√§rg p√• startknappen
+        startButton.setForeground(Color.pink); //f‰rg pÂ startknappen
         
         background.add(startButton);
 		myFrame.add(background);
 		
-		//Skapa n√•gra lyssnare
+		//Skapa nÂgra lyssnare
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                //starta spel h√§r
+                //starta spel h‰r
             	createGUI();
-            	
             	engine.printWelcome();}
             	
         });
@@ -125,8 +122,8 @@ public class UserInterface {
 		});
 		menu.add(menuItem);
 
-        //√ñppna en sparad fil
-        menuItem = new JMenuItem("√ñppna",
+        //÷ppna en sparad fil
+        menuItem = new JMenuItem("÷ppna",
                 KeyEvent.VK_T);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_1, ActionEvent.ALT_MASK));
@@ -146,7 +143,7 @@ public class UserInterface {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-            	int svar = JOptionPane.showConfirmDialog(null, "Vill du l√§mna spelet utan att spara?", "Avsluta", JOptionPane. YES_NO_OPTION);
+            	int svar = JOptionPane.showConfirmDialog(null, "Vill du l‰mna spelet utan att spara?", "Avsluta", JOptionPane. YES_NO_OPTION);
             	if(svar == JOptionPane.YES_OPTION)
             		System.exit(0);
             }
@@ -194,7 +191,7 @@ public class UserInterface {
         menu.add(submenu);
 
         //Build second menu in the menu bar.
-        menu = new JMenu("Inst√§llningar");
+        menu = new JMenu("Inst‰llningar");
         menu.setMnemonic(KeyEvent.VK_N);
         menu.getAccessibleContext().setAccessibleDescription(
                 "This menu does nothing");
@@ -203,20 +200,20 @@ public class UserInterface {
         myFrame.setJMenuBar(menuBar);
         
       //Build second menu in the menu bar.
-        menu = new JMenu("Hj√§lp");
+        menu = new JMenu("Hj‰lp");
         menu.setMnemonic(KeyEvent.VK_N);
         menu.getAccessibleContext().setAccessibleDescription(
                 "This menu does nothing");
         
         menuBar.add(menu);
         
-        menuItem = new JMenuItem("Hj√§lp",
+        menuItem = new JMenuItem("Hj‰lp",
                 new ImageIcon("images/middle.gif"));
         menuItem.setMnemonic(KeyEvent.VK_B);
         menuItem.addActionListener(new ActionListener() {
         		@Override
         		public void actionPerformed(ActionEvent event) {
-        			JOptionPane.showMessageDialog( null, "[hj√§lp kommer senare]","Hj√§√§lp",JOptionPane.OK_CANCEL_OPTION); 
+        			JOptionPane.showMessageDialog( null, "[hj‰lp kommer senare]","Hj‰‰lp",JOptionPane.OK_CANCEL_OPTION); 
         		}
         });
         
@@ -230,8 +227,8 @@ public class UserInterface {
         myFrame.pack();
 	}
 	
-	 public void createGUI()
-	    {
+	 public void createGUI() {
+		
 	        //entryField = new JTextField(34);
 	        image ="pictures/startbackground.jpg";
 	        /*
@@ -248,13 +245,12 @@ public class UserInterface {
 	        myFrame.setMinimumSize(new Dimension((int)width, (int)height));
 	        myFrame.setResizable(false);
 	        myFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-	        */	              
+	         */	
 	        panel = new JPanelWithBackground(image); 
 	        addBorderLayout(panel, engine.getCurrent());
 	        //createMenu();
 	       	               	        
 	        myFrame.pack();
-	        myFrame.setVisible(true);
 	        //entryField.requestFocus();
 	              
 	        
@@ -276,9 +272,8 @@ public class UserInterface {
 	        JButton button6 = new JButton("FˆremÂl");
 	        JButton button7 = new JButton("Pengar"); 
 	        
-	        String image ="pictures/startbackground.jpg";
+	        //String image ="pictures/startbackground.jpg";
 	                
-	        
 	        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	        double width = screenSize.getWidth();
 	        double height = screenSize.getHeight();
