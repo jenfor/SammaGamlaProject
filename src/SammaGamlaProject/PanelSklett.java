@@ -149,17 +149,17 @@ public class PanelSklett {
 			     
 			    clickButton.setBorderPainted(false);//Osynlig
 			    clickButton.addActionListener(new ActionListener() {
-					
+			    	int option =1;
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
 						// TODO Auto-generated method stub
-						int option =1;
+						
 						if(option ==1){
 							option=0;
 							clickButton.setContentAreaFilled(true);
 						}
 	
-						else
+						else if(option ==0)
 					    {
 						option =1;
 						clickButton.setContentAreaFilled(false);
