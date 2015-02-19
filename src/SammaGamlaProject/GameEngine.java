@@ -49,5 +49,8 @@ public class GameEngine {
 
         //startar spelet i centrum
         current = "center";
+        
+        
+       //kommentar
     }
 }
