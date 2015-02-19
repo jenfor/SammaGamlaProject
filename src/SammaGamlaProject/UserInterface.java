@@ -1,7 +1,9 @@
 package SammaGamlaProject;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -33,16 +35,65 @@ public class UserInterface {
 	    private Room room;
 	    public PanelSklett invisPanels;
 	    private JPanel invisPanel;
+	    private JPanelWithBackground background;
+		private UserInterface that = this; // ;-)
 	
 	//Den metoden som skapas i game
     public UserInterface(GameEngine gameEngine)
     {
         engine = gameEngine;
+        myFrame = new JFrame("spel");
         //createGUI();
         //room = new Room();
         invisPanels = new PanelSklett(engine, this);
+        gameStart();
     }
-	
+    
+    public JFrame myFrame() {
+    	return myFrame;
+    }
+    
+    private void gameStart() {
+		background = new JPanelWithBackground("C:/Users/Jenny/Documents/GitHub/SammaGamlaProject/SammaGamlaProject/pictures/startbackground.jpg");
+		background.setLayout(null);
+		Font font = new Font("Viner Hand ITC", Font.BOLD, 50);
+		
+		//Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        //double width = screenSize.getWidth();
+        //double height = screenSize.getHeight();
+        
+		//Frame har en bestämd storlek 1280x800. Kan finnas kvar tills man implementerar resize-funktion för JButton
+        myFrame.setPreferredSize(new Dimension(1280, 800));
+        myFrame.setMinimumSize(new Dimension(1280, 800));
+        myFrame.setResizable(false);
+        myFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        createMenu();
+		
+		JButton startButton = new JButton ("Starta spel");
+        startButton.setBounds(420,580,400,80);
+        startButton.setContentAreaFilled(false);
+        startButton.setBorderPainted(false); //med eller utan kant
+        startButton.setFont(font);
+        startButton.setForeground(Color.pink); //färg på startknappen
+        
+        background.add(startButton);
+		myFrame.add(background);
+		
+		//Skapa några lyssnare
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                //starta spel här
+            	createGUI();
+            	
+            	engine.printWelcome();}
+            	
+        });
+		
+        myFrame.pack();
+        myFrame.setVisible(true);
+    }
 	
 	public void createMenu() {
     	//Where the GUI is created:
@@ -179,15 +230,11 @@ public class UserInterface {
         myFrame.pack();
 	}
 	
-	
-	private UserInterface that = this; // ;-)
-	
 	 public void createGUI()
 	    {
-	        myFrame = new JFrame("Spel");
-	        entryField = new JTextField(34);
+	        //entryField = new JTextField(34);
 	        image ="pictures/startbackground.jpg";
-	        
+	        /*
 	        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	        double width = screenSize.getWidth();
 	        double height = screenSize.getHeight();
@@ -201,14 +248,14 @@ public class UserInterface {
 	        myFrame.setMinimumSize(new Dimension((int)width, (int)height));
 	        myFrame.setResizable(false);
 	        myFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-	        	              
+	        */	              
 	        panel = new JPanelWithBackground(image); 
 	        addBorderLayout(panel, engine.getCurrent());
-	        createMenu();
+	        //createMenu();
 	       	               	        
 	        myFrame.pack();
 	        myFrame.setVisible(true);
-	        entryField.requestFocus();
+	        //entryField.requestFocus();
 	              
 	        
 	    }
@@ -304,7 +351,7 @@ public class UserInterface {
 		  panel.add(invisPanels.getPanel(engine.getCurrent()), BorderLayout.CENTER); //room.getRoomPanel("Shop"/*engine.getCurrent()*/));
 		  myFrame.add(panel);			
 		  myFrame.pack();
-		  myFrame.setVisible(true);
+		  //myFrame.setVisible(true);
 		  
 		    
 	 }
