@@ -54,7 +54,7 @@ public class UserInterface {
     }
     
     private void gameStart() {
-		background = new JPanelWithBackground("C:/Users/Jenny/Documents/GitHub/SammaGamlaProject/SammaGamlaProject/pictures/startbackground.jpg");
+		background = new JPanelWithBackground("pictures/startbackground.jpg");
 		background.setLayout(null);
 		Font font = new Font("Viner Hand ITC", Font.BOLD, 50);
 		
@@ -348,7 +348,7 @@ public class UserInterface {
 		  panel = new JPanelWithBackground(i);
 		  panel.setLayout(new BorderLayout());
 		  addBorderLayout(panel, engine.getCurrent());
-		  panel.add(invisPanels.getPanel(engine.getCurrent()), BorderLayout.CENTER); //room.getRoomPanel("Shop"/*engine.getCurrent()*/));
+		  panel.add(invisPanels.getPanel(engine.getCurrent()), BorderLayout.CENTER); //Alternativt: room.getRoomPanel("Shop"/*engine.getCurrent()*/));
 		  myFrame.add(panel);			
 		  myFrame.pack();
 		  //myFrame.setVisible(true);
@@ -359,9 +359,9 @@ public class UserInterface {
 	 public void changeRoom(String current)
 	 {
 		 engine.setCurrent(current);
-		 if(current.equals("Center")) room = invisPanels.center; 
-		 else if(current.equals("Shop")) room = invisPanels.shop;
-		 else if(current.equals("Garden")) room = invisPanels.garden;
+		 if(current.equals("center")) room = invisPanels.center; 
+		 else if(current.equals("shop")) room = invisPanels.shop;
+		 else if(current.equals("garden")) room = invisPanels.garden;
 		 else room = invisPanels.miniGame1;
 		 
 		 setJPanelWithBackground(room.getPicture(engine.getCurrent()));
