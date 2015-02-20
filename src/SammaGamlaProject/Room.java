@@ -1,7 +1,5 @@
 package SammaGamlaProject;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class Room {
@@ -44,23 +42,6 @@ public class Room {
 		}
 		
 	}
-		
-		
-		public void addItem(int lopnr, ImageIcon icon)
-		{
-			
-		}
-		
-		public void removeItem(int lopnr)
-		{
-			
-		}
-		
-		public ImageIcon getGardenIcon(int lopnr)
-		{
-			return null;
-		}
-	    
 
 	//Onödig!!
 	/*public JPanel getRoomPanel(String current)

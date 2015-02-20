@@ -10,7 +10,7 @@ public class Inventory {
 		//items = new HashMap(itemName, antal);
 	}
 	
-	public HashMap<Item, Integer> getInventory() {
+	private HashMap<Item, Integer> getInventory() {
 		return items;
 	}
 	
